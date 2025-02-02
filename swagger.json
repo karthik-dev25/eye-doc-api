@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Authentication API",
+      "description": "API for user authentication",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080/api/auth"
+      }
+    ],
+    "paths": {
+      "/signup": {
+        "post": {
+          "summary": "User Signup",
+          "description": "Registers a new user",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": { "type": "string", "example": "John" },
+                    "lastName": { "type": "string", "example": "Doe" },
+                    "email": { "type": "string", "format": "email", "example": "john.doe@example.com" },
+                    "phone": { "type": "string", "example": "1234567890" },
+                    "password": { "type": "string", "format": "password", "example": "P@ssword123" },
+                    "confirmPassword": { "type": "string", "format": "confirmPassword", "example": "P@ssword123" }
+                  },
+                  "required": ["firstName", "lastName", "email", "phone", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": { "description": "User signed up successfully" },
+            "400": { "description": "Validation failed" },
+            "500": { "description": "Error signing up" }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "summary": "User Login",
+          "description": "Logs in a user",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": { "type": "string", "format": "email", "example": "john.doe@example.com" },
+                    "phone": { "type": "string", "example": "1234567890" },
+                    "password": { "type": "string", "format": "password", "example": "P@ssword123" }
+                  },
+                  "required": ["password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": { "description": "Successful login" },
+            "400": { "description": "Invalid credentials" },
+            "404": { "description": "User not found" },
+            "500": { "description": "Error logging in" }
+          }
+        }
+      }
+    }
+  }

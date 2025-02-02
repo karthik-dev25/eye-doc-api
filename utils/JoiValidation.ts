@@ -33,9 +33,9 @@ const signupSchema = Joi.object({
       "string.empty": "Password cannot be empty",
     }),
     confirmPassword: Joi.string().min(6).required().messages({
-        "any.required": "Password is required",
-        "string.min": "Password must be at least 6 characters long",
-        "string.empty": "Password cannot be empty",
+        "any.required": "Confirm Password is required",
+        "string.min": "Confirm Password must be at least 6 characters long",
+        "string.empty": "Confirm Password cannot be empty",
       }),
   });
 
