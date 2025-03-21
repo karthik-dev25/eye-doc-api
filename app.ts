@@ -5,10 +5,14 @@ import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from './swagger.json';
 import authRoutes from './routes/authRoutes';
+import cors from "cors"
 
 dotenv.config();
 
 const app = express();
+
+app.use(cors({ origin: "*", credentials: true }));
+
 
 // Middleware
 app.use(bodyParser.json());
